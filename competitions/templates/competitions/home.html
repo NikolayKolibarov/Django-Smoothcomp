@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Competitions
+{% endblock title %}
+
+{% block content %}
+    <section class="features-icons bg-light text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex">
+                            <i class="icon-screen-desktop m-auto text-primary"></i>
+                        </div>
+                        <h3>Fully Responsive</h3>
+                        <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex">
+                            <i class="icon-layers m-auto text-primary"></i>
+                        </div>
+                        <h3>Bootstrap 4 Ready</h3>
+                        <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex">
+                            <i class="icon-check m-auto text-primary"></i>
+                        </div>
+                        <h3>Easy to Use</h3>
+                        <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="showcase">
+        <div class="container-fluid p-0">
+            {% if competitions %}
+                {% for competition in competitions %}
+                    <div class="row no-gutters">
+                        <div class="col-lg-6 order-lg-2 text-white showcase-img"
+                             style="background-image: url({{ competition.thumbnail.url }});"></div>
+                        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                            <h2>{{ competition.title }}</h2>
+                            <p class="lead mb-0">{{ competition.description }}</p>
+                            <br>
+                            <a href="{% url 'competitions:show' competition.id %}" class="btn btn-primary">Show more</a>
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% else %}
+                <p>No competitions are available.</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}
